@@ -24,19 +24,19 @@ for i in range(1, numOfRows):
     for j in range(1, numOfColumns):
         if y[i-1]==x[j-1]:
             matrix[i][j] = max(max(matrix[i-1][j]-1, matrix[i][j-1]-1), matrix[i-1][j-1]+2)
-            matrixLocal[i][j] = max(matrix[i][j], 0)
+            matrixLocal[i][j] = max(max(max(matrixLocal[i-1][j]-1, matrixLocal[i][j-1]-1), matrixLocal[i-1][j-1]+2), 0)
         else:
             matrix[i][j] = max(max(matrix[i-1][j]-1, matrix[i][j-1]-1), matrix[i-1][j-1]-1)
-            matrixLocal[i][j] = max(matrix[i][j], 0)
+            matrixLocal[i][j] = max(max(max(matrixLocal[i-1][j]-1, matrixLocal[i][j-1]-1), matrixLocal[i-1][j-1]-1), 0)
 
 for i in range(1, numOfRows):
     for j in range(1, numOfColumns):
         if y[i-1]==x[j-1]:
             mat[i][j] = max(max(mat[i-1][j]-2, mat[i][j-1]-2), mat[i-1][j-1]+2)
-            matLocal[i][j] = max(mat[i][j], 0)
+            matLocal[i][j] = max(max(max(matLocal[i-1][j]-2, matLocal[i][j-1]-2), matLocal[i-1][j-1]+2), 0)
         else:
             mat[i][j] = max(max(mat[i-1][j]-2, mat[i][j-1]-2), mat[i-1][j-1]-1)
-            matLocal[i][j] = max(mat[i][j], 0)
+            matLocal[i][j] = max(max(max(matLocal[i-1][j]-2, matLocal[i][j-1]-2), matLocal[i-1][j-1]-1), 0)
 
 print("The global alignment matrix: ")
 for i in range(numOfRows):
