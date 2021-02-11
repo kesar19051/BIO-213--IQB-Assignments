@@ -5,6 +5,7 @@ numOfRows = len(y)+1 #5
 numOfColumns = len(x)+1 #6
 
 matrix = [[0 for i in range(numOfColumns)] for j in range(numOfRows)]
+matrixLocal = [[0 for i in range(numOfColumns)] for j in range(numOfRows)]
 
 matrix[0][0] = 0
 
@@ -18,12 +19,19 @@ for i in range(1, numOfRows):
     for j in range(1, numOfColumns):
         if y[i-1]==x[j-1]:
             matrix[i][j] = max(max(matrix[i-1][j]-1, matrix[i][j-1]-1), matrix[i-1][j-1]+2)
+            matrixLocal[i][j] = max(matrix[i][j], 0)
         else:
             matrix[i][j] = max(max(matrix[i-1][j]-1, matrix[i][j-1]-1), matrix[i-1][j-1]-1)
+            matrixLocal[i][j] = max(matrix[i][j], 0)
 
 for i in range(numOfRows):
     for j in range(numOfColumns):
         print(matrix[i][j], end = " ")
+    print()
+
+for i in range(numOfRows):
+    for j in range(numOfColumns):
+        print(matrixLocal[i][j], end = " ")
     print()
 
 xpos = numOfRows+numOfColumns-2
