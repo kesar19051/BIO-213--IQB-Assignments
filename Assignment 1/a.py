@@ -1,8 +1,16 @@
+"""
+Name: Kesar Shrivastava
+Roll number: 2019051
+"""
+#Initialising the given strings
 x = "ATCAGAGTA"
 y = "TTCAGTA"
 
+#These lists maintain the indices where there is maximum score in the matrix of local alignment.
 listx = []
 listy = []
+
+#function to print the alignments
 def alignment(s1, s2):
     printed = [[0 for i in range(len(s1))] for j in range(3)]
     for i in range(len(s1)):
@@ -27,6 +35,7 @@ maxInMatrixLocal = -1
 indexI = 0
 indexJ = 0
 
+#Initialising the matrices to fill in values
 matrix = [[0 for i in range(numOfColumns)] for j in range(numOfRows)]
 matrixLocal = [[0 for i in range(numOfColumns)] for j in range(numOfRows)]
 
@@ -35,6 +44,7 @@ matLocal = [[0 for i in range(numOfColumns)] for j in range(numOfRows)]
 
 matrix[0][0] = 0
 
+#Filling in the matrices
 for i in range(1, numOfColumns):
     matrix[0][i] = matrix[0][i-1]-1
     mat[0][i] = mat[0][i-1]-2
@@ -89,6 +99,7 @@ string1 = ""
 string2 = ""
 list = []
 
+#function to get the optimal alignment in global alignment
 def func(s1, s2, i, j, array, match, mis, gap):
     if(i==0 and j==0):
         if s1 in list:
@@ -140,6 +151,7 @@ string1 = ""
 string2 = ""
 list = []
 
+#function to get the optimal alignment in local alignment
 def localFunc(s1, s2, i, j, array, match, mis, gap):
     if(array[i][j]==0):
         if s1 in list:
@@ -177,7 +189,7 @@ localFunc(string1, string2, indexI, indexJ, matrixLocal, 2, -1, -1)
 print()
 print("Question 3: In the local alignment the minimum value that a box can hold in the grid is 0.")
 print("So the changes that were required are as follows: ")
-print("1) Intilize row0/col0 with 0.")
+print("1) Intialize row0/col0 with 0.")
 print("2) Find the cell with the highest value (i,j) and extend the alignment back to the first zero value.")
 print("3) The score of the alignment is the value in that cell")
 print()
