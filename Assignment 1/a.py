@@ -80,18 +80,18 @@ def func(s1, s2, i, j, array, match, mis, gap):
         i-=1
         j-=1
         func(s1, s2, i, j, array, match, mis, gap)
-    if matrix[i-1][j-1]+mis==matrix[i][j]:
+    if array[i-1][j-1]+mis==array[i][j]:
         s1 = y[i-1]+s1
         s2 = x[j-1]+s2
         i-=1
         j-=1
         func(s1, s2, i, j, array, match, mis, gap)
-    if matrix[i-1][j]+gap==matrix[i][j]:
+    if array[i-1][j]+gap==array[i][j]:
         s1 = y[i-1] + s1
         s2 = "_" + s2
         i-=1
         func(s1, s2, i, j, array, match, mis, gap)
-    if matrix[i][j-1]+gap==matrix[i][j]:
+    if array[i][j-1]+gap==array[i][j]:
         s1 = "_" + s1
         s2 = x[j-1] + s2
         j-=1
@@ -132,18 +132,18 @@ def localFunc(s1, s2, i, j, array, match, mis, gap):
         i-=1
         j-=1
         localFunc(s1, s2, i, j, array, match, mis, gap)
-    if matrix[i-1][j-1]+mis==matrix[i][j]:
+    if array[i-1][j-1]+mis==array[i][j]:
         s1 = y[i-1]+s1
         s2 = x[j-1]+s2
         i-=1
         j-=1
         localFunc(s1, s2, i, j, array, match, mis, gap)
-    if matrix[i-1][j]+gap==matrix[i][j]:
+    if array[i-1][j]+gap==array[i][j]:
         s1 = y[i-1] + s1
         s2 = "_" + s2
         i-=1
         localFunc(s1, s2, i, j, array, match, mis, gap)
-    if matrix[i][j-1]+gap==matrix[i][j]:
+    if array[i][j-1]+gap==array[i][j]:
         s1 = "_" + s1
         s2 = x[j-1] + s2
         j-=1
@@ -179,12 +179,22 @@ string2 = ""
 list = []
 
 print("The global alignments are: ")
-print(i)
-print(j)
+print()
 func(string1, string2, i, j, mat, 2, -1, -2)
-
+print()
 print("The local alignments are: ")
 string1 = ""
 string2 = ""
 localFunc(string1, string2, indexI, indexJ,matLocal, 2, -1, -2)
+
+print("--------------")
+string1 = ""
+string2 = ""
+localFunc(string1, string2, 7, 6,matLocal, 2, -1, -2)
+
+
+print("--------------")
+string1 = ""
+string2 = ""
+localFunc(string1, string2, 5, 5,matLocal, 2, -1, -2)
 
