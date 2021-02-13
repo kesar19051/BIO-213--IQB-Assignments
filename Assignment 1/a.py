@@ -161,24 +161,24 @@ def localFunc(s1, s2, i, j, array, match, mis, gap):
             list.append(s1)
             print()
         return
-    if y[i-1]==x[j-1]:
+    if y[i-1]==x[j-1] and array[i][j]!=0:
         s1 = y[i-1]+s1
         s2 = x[j-1]+s2
         i-=1
         j-=1
         localFunc(s1, s2, i, j, array, match, mis, gap)
-    if array[i-1][j-1]+mis==array[i][j]:
+    if array[i-1][j-1]+mis==array[i][j] and array[i][j]!=0:
         s1 = y[i-1]+s1
         s2 = x[j-1]+s2
         i-=1
         j-=1
         localFunc(s1, s2, i, j, array, match, mis, gap)
-    if array[i-1][j]+gap==array[i][j]:
+    if array[i-1][j]+gap==array[i][j] and array[i][j]!=0:
         s1 = y[i-1] + s1
         s2 = "_" + s2
         i-=1
         localFunc(s1, s2, i, j, array, match, mis, gap)
-    if array[i][j-1]+gap==array[i][j]:
+    if array[i][j-1]+gap==array[i][j] and array[i][j]!=0:
         s1 = "_" + s1
         s2 = x[j-1] + s2
         j-=1
@@ -219,42 +219,6 @@ j = numOfColumns-1
 string1 = ""
 string2 = ""
 list = []
-val = 0
-
-def localFunc1(s1, s2, i, j, array, match, mis, gap):
-    if(array[i][j]==0):
-        if s1=="TC__AGTA":
-            u = 1
-        elif s1 in list:
-            u=2
-        else:
-            alignment(s1, s2)
-            list.append(s1)
-            print()
-        return
-    if y[i-1]==x[j-1]:
-        s1 = y[i-1]+s1
-        s2 = x[j-1]+s2
-        i-=1
-        j-=1
-        localFunc1(s1, s2, i, j, array, match, mis, gap)
-    if array[i-1][j-1]+mis==array[i][j]:
-        s1 = y[i-1]+s1
-        s2 = x[j-1]+s2
-        i-=1
-        j-=1
-        localFunc1(s1, s2, i, j, array, match, mis, gap)
-    if array[i-1][j]+gap==array[i][j]:
-        s1 = y[i-1] + s1
-        s2 = "_" + s2
-        i-=1
-        localFunc1(s1, s2, i, j, array, match, mis, gap)
-    if array[i][j-1]+gap==array[i][j]:
-        s1 = "_" + s1
-        s2 = x[j-1] + s2
-        j-=1
-        localFunc1(s1, s2, i, j, array, match, mis, gap)
-
 
 print("The global alignments are: ")
 print()
@@ -266,7 +230,7 @@ print()
 for i in range(len(listx)):
     string1=""
     string2=""
-    localFunc1(string1, string2, listx[i], listy[i], matLocal, 2, -1, -2)
+    localFunc(string1, string2, listx[i], listy[i], matLocal, 2, -1, -2)
 
 print("As can be seen from the results above the change in scoring scheme has changed the result.")
 print("When aligning biological sequences, the choice of parameter values for the alignment scoring function is critical.")
