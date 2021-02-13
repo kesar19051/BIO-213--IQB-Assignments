@@ -46,15 +46,65 @@ for i in range(1, numOfRows):
             mat[i][j] = max(max(mat[i-1][j]-2, mat[i][j-1]-2), mat[i-1][j-1]-1)
             matLocal[i][j] = max(max(max(matLocal[i-1][j]-2, matLocal[i][j-1]-2), matLocal[i-1][j-1]-1), 0)
 
-print("The global alignment matrix: ")
+print("Question 1 a): The generated dynamic programming matrix for global alignment is:")
 for i in range(numOfRows):
     for j in range(numOfColumns):
         print(matrix[i][j], end = " ")
     print()
 
 print()
+print("Question 1 b): Yes, there is more than one possibility of aligning the given sequences.")
+print()
 
-print("The local alignment matrix: ")
+
+i = numOfRows-1
+j = numOfColumns-1
+
+string1 = ""
+string2 = ""
+list = []
+
+def func(s1, s2, i, j, array, match, mis, gap):
+    if(i==0 and j==0):
+        if s1 in list:
+            u = 1
+        else:
+            print(s1)
+            print(s2)
+            list.append(s1)
+            print()
+        return
+    if y[i-1]==x[j-1]:
+        s1 = y[i-1]+s1
+        s2 = x[j-1]+s2
+        i-=1
+        j-=1
+        func(s1, s2, i, j, array, match, mis, gap)
+    if matrix[i-1][j-1]+mis==matrix[i][j]:
+        s1 = y[i-1]+s1
+        s2 = x[j-1]+s2
+        i-=1
+        j-=1
+        func(s1, s2, i, j, array, match, mis, gap)
+    if matrix[i-1][j]+gap==matrix[i][j]:
+        s1 = y[i-1] + s1
+        s2 = "_" + s2
+        i-=1
+        func(s1, s2, i, j, array, match, mis, gap)
+    if matrix[i][j-1]+gap==matrix[i][j]:
+        s1 = "_" + s1
+        s2 = x[j-1] + s2
+        j-=1
+        func(s1, s2, i, j, array, match, mis, gap)
+
+
+print("Question 1 c): The scores of all the optimal alignments given below is 9 because")
+print("the rightmost value of the last row is taken to be the score of global alignment.")
+print()
+
+func(string1, string2, i, j, matrix, 2, -1, -1)
+
+print("Question 2 a): The generated dynamic programming matrix for local alignment is:")
 for i in range(numOfRows):
     for j in range(numOfColumns):
         print(matrixLocal[i][j], end = " ")
@@ -62,6 +112,49 @@ for i in range(numOfRows):
 
 print()
 
+string1 = ""
+string2 = ""
+list = []
+
+def localFunc(s1, s2, i, j, array, match, mis, gap):
+    if(array[i][j]==0):
+        if s1 in list:
+            u = 1
+        else:
+            print(s1)
+            print(s2)
+            list.append(s1)
+            print()
+        return
+    if y[i-1]==x[j-1]:
+        s1 = y[i-1]+s1
+        s2 = x[j-1]+s2
+        i-=1
+        j-=1
+        localFunc(s1, s2, i, j, array, match, mis, gap)
+    if matrix[i-1][j-1]+mis==matrix[i][j]:
+        s1 = y[i-1]+s1
+        s2 = x[j-1]+s2
+        i-=1
+        j-=1
+        localFunc(s1, s2, i, j, array, match, mis, gap)
+    if matrix[i-1][j]+gap==matrix[i][j]:
+        s1 = y[i-1] + s1
+        s2 = "_" + s2
+        i-=1
+        localFunc(s1, s2, i, j, array, match, mis, gap)
+    if matrix[i][j-1]+gap==matrix[i][j]:
+        s1 = "_" + s1
+        s2 = x[j-1] + s2
+        j-=1
+        localFunc(s1, s2, i, j, array, match, mis, gap)
+
+print("Question 2 b): The local alignments have score 10 as in local alignment we take the maximum value to be its score: ")
+localFunc(string1, string2, indexI, indexJ, matrixLocal, 2, -1, -1)
+print()
+print("Question 3: In the local alignment the minimum value that a box can hold in the grid is 0.\n So whenver we get the value as negative in the global alignment matrix we replace it with 0.\n Moreover, while recurring to find the optimal alignments we stop the recursion whenver the value in the grid becomes 0.")
+print()
+print("Question 4: ")
 print("The global alignment matrix with changed scores: ")
 for i in range(numOfRows):
     for j in range(numOfColumns):
@@ -85,79 +178,13 @@ string1 = ""
 string2 = ""
 list = []
 
-def func(s1, s2, i, j, array):
-    if(i==0 and j==0):
-        if s1 in list:
-            u = 1
-        else:
-            print(s1)
-            print(s2)
-            list.append(s1)
-            print()
-        return
-    if y[i-1]==x[j-1]:
-        s1 = y[i-1]+s1
-        s2 = x[j-1]+s2
-        i-=1
-        j-=1
-        func(s1, s2, i, j, array)
-    if matrix[i-1][j-1]-1==matrix[i][j]:
-        s1 = y[i-1]+s1
-        s2 = x[j-1]+s2
-        i-=1
-        j-=1
-        func(s1, s2, i, j, array)
-    if matrix[i-1][j]-1==matrix[i][j]:
-        s1 = y[i-1] + s1
-        s2 = "_" + s2
-        i-=1
-        func(s1, s2, i, j, array)
-    if matrix[i][j-1]-1==matrix[i][j]:
-        s1 = "_" + s1
-        s2 = x[j-1] + s2
-        j-=1
-        func(s1, s2, i, j, array)
+print("The global alignments are: ")
+print(i)
+print(j)
+func(string1, string2, i, j, mat, 2, -1, -2)
 
-func(string1, string2, i, j, matrix)
-
+print("The local alignments are: ")
 string1 = ""
 string2 = ""
-list = []
-
-print("----------LOCAL-----------")
-
-def localFunc(s1, s2, i, j, array):
-    if(array[i][j]==0):
-        if s1 in list:
-            u = 1
-        else:
-            print(s1)
-            print(s2)
-            list.append(s1)
-            print()
-        return
-    if y[i-1]==x[j-1]:
-        s1 = y[i-1]+s1
-        s2 = x[j-1]+s2
-        i-=1
-        j-=1
-        localFunc(s1, s2, i, j, array)
-    if matrix[i-1][j-1]-1==matrix[i][j]:
-        s1 = y[i-1]+s1
-        s2 = x[j-1]+s2
-        i-=1
-        j-=1
-        localFunc(s1, s2, i, j, array)
-    if matrix[i-1][j]-1==matrix[i][j]:
-        s1 = y[i-1] + s1
-        s2 = "_" + s2
-        i-=1
-        localFunc(s1, s2, i, j, array)
-    if matrix[i][j-1]-1==matrix[i][j]:
-        s1 = "_" + s1
-        s2 = x[j-1] + s2
-        j-=1
-        localFunc(s1, s2, i, j, array)
-
-localFunc(string1, string2, indexI, indexJ, matLocal)
+localFunc(string1, string2, indexI, indexJ,matLocal, 2, -1, -2)
 
