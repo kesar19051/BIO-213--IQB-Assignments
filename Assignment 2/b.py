@@ -45,13 +45,53 @@ for i in range(len(s)-5):
 			else:
 				listHelix.append(i+j+6)
 
-for x in range(len(listHelix)):
-    print (listHelix[x], end = " ")
 
-			
+print(s)
+for i in range(len(s)):
+	if i in listHelix:
+		print("H", end = "")
+	else:
+		print(" ", end = "")
 
 
+#identifying beta sheets
+for i in range(len(s)-4):
+	window = s[i:i+5]
+	score = 0
+	for x in window:
+		score = score + sheet.get(x)
+	if score>3:
+		for j in range(5):
+			if i+j in listSheet:
+				continue
+			else:
+				listSheet.append(i+j)
+		extensionScore = 0
+		ex = i+5
+		if ex+3<len(s):
+				extensionWindow = s[ex:ex+4]
+				for y in extensionWindow:
+					extensionScore = extensionScore + p_beta.get(y)
+				ex = ex+4
+		while extensionScore>=4 and ex+3<len(s):
+			extensionWindow = s[ex:ex+4]
+			extensionScore = 0
+			for y in extensionWindow:
+				extensionScore = extensionScore + p_beta.get(y)
+			ex = ex+4
+		r = ex-4-i-5
+		for j in range(r):
+			if i+j+5 in listSheet:
+				continue
+			else:
+				listHelix.append(i+j+5)
 
+print()
+print(s)
+for i in range(len(s)):
+	if i in listSheet:
+		print("S", end = "")
+	else:
+		print(" ", end = "")
 
-
-
+		
