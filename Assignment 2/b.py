@@ -35,7 +35,7 @@ for i in range(len(s)-5):
 				extensionScore = extensionScore + p_alpha.get(y)
 			ex = ex+1
 
-		if ex!=i+6:
+		if ex-1!=i+6:
 			for j in range(ex-i-6):
 				if i+6+j in listHelix:
 					continue
@@ -54,7 +54,7 @@ for i in range(len(s)-5):
 				extensionScore = extensionScore + p_alpha.get(y)
 			ex = ex-1
 
-		if ex!=i-1:
+		if ex+1!=i-1:
 			for j in range(i-1-ex):
 				if ex+1+j in listHelix:
 					continue
@@ -92,7 +92,7 @@ for i in range(len(s)-4):
 				extensionScore = extensionScore + p_beta.get(y)
 			ex = ex+1
 
-		if ex!=i+5:
+		if ex-1!=i+5:
 			for j in range(ex-i-5):
 				if i+5+j in listSheet:
 					continue
@@ -111,7 +111,7 @@ for i in range(len(s)-4):
 				extensionScore = extensionScore + p_beta.get(y)
 			ex = ex-1
 
-		if ex!=i-1:
+		if ex+1!=i-1:
 			for j in range(i-1-ex):
 				if ex+1+j in listHelix:
 					continue
@@ -125,3 +125,5 @@ for i in range(len(s)):
 		print("S", end = "")
 	else:
 		print(" ", end = "")
+
+		
