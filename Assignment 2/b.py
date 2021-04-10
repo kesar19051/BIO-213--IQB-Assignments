@@ -10,8 +10,6 @@ sheet = {'M': 1, 'V': 1, 'I': 1, 'C': 1, 'Y': 1, 'F': 1, 'Q': 1, 'L': 1, 'T': 1,
 
 listHelix = []
 listSheet = []
-#this string will contain if a residue is identified to be a part of alpha helix or beta sheet
-ans = "."*len(s)
 
 #identifying alpha helix
 for i in range(len(s)-5):
@@ -66,5 +64,64 @@ print(s)
 for i in range(len(s)):
 	if i in listHelix:
 		print("H", end = "")
+	else:
+		print(" ", end = "")
+
+
+#identifying beta sheet
+for i in range(len(s)-4):
+	window = s[i:i+5]
+	score = 0
+	for x in window:
+		score = score + sheet.get(x)
+	if score>3:
+		for j in range(5):
+			if i+j in listHelix:
+				continue
+			else:
+				listSheet.append(i+j)
+		extensionScore = 100000000
+		ex = i+5
+
+		while extensionScore>=4:
+			if ex+4>=len(s):
+				break
+			extensionWindow = s[ex:ex+4]
+			extensionScore = 0
+			for y in extensionWindow:
+				extensionScore = extensionScore + p_beta.get(y)
+			ex = ex+1
+
+		if ex!=i+5:
+			for j in range(ex-i-5):
+				if i+5+j in listSheet:
+					continue
+				else:
+					listSheet.append(i+5+j)
+
+		extensionScore = 100000000
+		ex = i-1
+
+		while extensionScore>=4:
+			if ex-4<=0:
+				break
+			extensionWindow = s[ex-3:ex+1]
+			extensionScore = 0
+			for y in extensionWindow:
+				extensionScore = extensionScore + p_beta.get(y)
+			ex = ex-1
+
+		if ex!=i-1:
+			for j in range(i-1-ex):
+				if ex+1+j in listHelix:
+					continue
+				else:
+					listHelix.append(ex+1+j)
+
+print()
+print(s)
+for i in range(len(s)):
+	if i in listSheet:
+		print("S", end = "")
 	else:
 		print(" ", end = "")
