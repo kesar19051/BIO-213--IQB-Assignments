@@ -25,73 +25,46 @@ for i in range(len(s)-5):
 				continue
 			else:
 				listHelix.append(i+j)
-		extensionScore = 0
+		extensionScore = 100000000
 		ex = i+6
-		if ex+3<len(s):
-				extensionWindow = s[ex:ex+4]
-				for y in extensionWindow:
-					extensionScore = extensionScore + p_alpha.get(y)
-				ex = ex+4
-		while extensionScore>=4 and ex+3<len(s):
+
+		while extensionScore>=4:
+			if ex+4>=len(s):
+				break
 			extensionWindow = s[ex:ex+4]
 			extensionScore = 0
 			for y in extensionWindow:
 				extensionScore = extensionScore + p_alpha.get(y)
-			ex = ex+4
-		r = ex-4-i-6
-		for j in range(r):
-			if i+j+6 in listHelix:
-				continue
-			else:
-				listHelix.append(i+j+6)
+			ex = ex+1
 
+		if ex!=i+6:
+			for j in range(ex-i-6):
+				if i+6+j in listHelix:
+					continue
+				else:
+					listHelix.append(i+6+j)
 
+		extensionScore = 100000000
+		ex = i-1
+
+		while extensionScore>=4:
+			if ex-4<=0:
+				break
+			extensionWindow = s[ex-3:ex+1]
+			extensionScore = 0
+			for y in extensionWindow:
+				extensionScore = extensionScore + p_alpha.get(y)
+			ex = ex-1
+
+		if ex!=i-1:
+			for j in range(i-1-ex):
+				if ex+1+j in listHelix:
+					continue
+				else:
+					listHelix.append(ex+1+j)
 print(s)
 for i in range(len(s)):
 	if i in listHelix:
 		print("H", end = "")
 	else:
 		print(" ", end = "")
-
-
-#identifying beta sheets
-for i in range(len(s)-4):
-	window = s[i:i+5]
-	score = 0
-	for x in window:
-		score = score + sheet.get(x)
-	if score>3:
-		for j in range(5):
-			if i+j in listSheet:
-				continue
-			else:
-				listSheet.append(i+j)
-		extensionScore = 0
-		ex = i+5
-		if ex+3<len(s):
-				extensionWindow = s[ex:ex+4]
-				for y in extensionWindow:
-					extensionScore = extensionScore + p_beta.get(y)
-				ex = ex+4
-		while extensionScore>=4 and ex+3<len(s):
-			extensionWindow = s[ex:ex+4]
-			extensionScore = 0
-			for y in extensionWindow:
-				extensionScore = extensionScore + p_beta.get(y)
-			ex = ex+4
-		r = ex-4-i-5
-		for j in range(r):
-			if i+j+5 in listSheet:
-				continue
-			else:
-				listHelix.append(i+j+5)
-
-print()
-print(s)
-for i in range(len(s)):
-	if i in listSheet:
-		print("S", end = "")
-	else:
-		print(" ", end = "")
-
-		
