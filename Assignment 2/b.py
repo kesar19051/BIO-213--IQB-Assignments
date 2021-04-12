@@ -24,13 +24,13 @@ for i in range(len(s)-5):
 				listHelix.append(i+j)
 		extensionScore = 1000000
 		ex = i+6
-		while extensionScore>4:
+		while extensionScore>=4:
 			if ex<len(s):
 				extensionWindow = s[ex-3:ex+1]
 				extensionScore = 0
 				for y in extensionWindow:
 					extensionScore = extensionScore + p_alpha.get(y)
-				if extensionScore>4:
+				if extensionScore>=4:
 					if (not(ex in listHelix)):
 						listHelix.append(ex)
 			else:
@@ -38,13 +38,13 @@ for i in range(len(s)-5):
 			ex = ex+1
 		extensionScore = 10000000
 		ex = i-1
-		while extensionScore>4:
+		while extensionScore>=4:
 			if ex>=0:
 				extensionWindow = s[ex:ex+4]
 				extensionScore = 0
 				for y in extensionWindow:
 					extensionScore = extensionScore +p_alpha.get(y)
-				if extensionScore>4:
+				if extensionScore>=4:
 					if (not(ex in listHelix)):
 						listHelix.append(ex)
 			else:
