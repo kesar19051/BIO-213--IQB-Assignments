@@ -16,7 +16,7 @@ for i in range(len(s)-5):
 	window = s[i:i+6]
 	counter = 0
 	for x in window:
-		if p_alpha.get(x)>1:
+		if p_alpha.get(x)>=1:
 			counter = counter+1
 	if counter>=4:
 		for j in range(6):
@@ -64,7 +64,7 @@ for i in range(len(s)-4):
 	window = s[i:i+5]
 	counter = 0
 	for x in window:
-		if p_beta.get(x)>1:
+		if p_beta.get(x)>=1:
 			counter = counter+1
 	if counter>=3:
 		for j in range(5):
