@@ -107,5 +107,48 @@ for i in range(len(s)):
 	else:
 		print(" ", end = "")
 
+print()
 
-		
+region = []
+answer = ['o']*len(s)
+
+for i in range(len(s)):
+	if ((i in listHelix) and (i in listSheet)):
+		region.append(i)
+	elif ((i in listHelix) and not(i in listSheet)):
+		answer[i] = 'H'
+	elif (not(i in listHelix) and (i in listSheet)):
+		answer[i] = 'S'
+	else:
+		answer[i] = 'T'
+
+for i in range(len(region)):
+	index = i
+	commence = region[i]
+	i = i+1
+	if i>=len(region):
+		break
+	while region[i]==commence+1:
+		commence = commence+1
+		if i+1>=len(region):
+			break
+		else:
+			i = i+1
+	interval = s[index:i]
+	alpha = 0
+	beta = 0
+	for x in interval:
+		alpha = alpha + p_alpha.get(x)
+		beta = beta + p_beta.get(x)
+	if alpha>beta:
+		for j in range(i-index):
+			answer[index+j] = 'H'
+	else:
+		for j in range(i-index):
+			answer[index+j] = 'S'
+print()
+print(s)
+for y in answer:
+	print(y, end = "")
+
+
