@@ -14,52 +14,44 @@ listSheet = []
 #identifying alpha helix
 for i in range(len(s)-5):
 	window = s[i:i+6]
-	score = 0
+	counter = 0
 	for x in window:
-		score = score + helix.get(x)
-	if score>=4:
+		if p_alpha.get(x)>1:
+			counter = counter+1
+	if counter>=4:
 		for j in range(6):
-			if i+j in listHelix:
-				continue
-			else:
+			if (not(i+j in listHelix)):
 				listHelix.append(i+j)
-		extensionScore = 100000000
+		extensionScore = 1000000
 		ex = i+6
-
-		while extensionScore>=4:
-			if ex+4>=len(s):
+		while extensionScore>4:
+			if ex<len(s):
+				extensionWindow = s[ex-3:ex+1]
+				extensionScore = 0
+				for y in extensionWindow:
+					extensionScore = extensionScore + p_alpha.get(y)
+				if extensionScore>4:
+					if (not(ex in listHelix)):
+						listHelix.append(ex)
+			else:
 				break
-			extensionWindow = s[ex:ex+4]
-			extensionScore = 0
-			for y in extensionWindow:
-				extensionScore = extensionScore + p_alpha.get(y)
 			ex = ex+1
-
-		if ex-1!=i+6:
-			for j in range(ex-i-6):
-				if i+6+j in listHelix:
-					continue
-				else:
-					listHelix.append(i+6+j)
-
-		extensionScore = 100000000
+		extensionScore = 10000000
 		ex = i-1
-
-		while extensionScore>=4:
-			if ex-4<=0:
+		while extensionScore>4:
+			if ex>=0:
+				extensionWindow = s[ex:ex+4]
+				extensionScore = 0
+				for y in extensionWindow:
+					extensionScore = extensionScore +p_alpha.get(y)
+				if extensionScore>4:
+					if (not(ex in listHelix)):
+						listHelix.append(ex)
+			else:
 				break
-			extensionWindow = s[ex-3:ex+1]
-			extensionScore = 0
-			for y in extensionWindow:
-				extensionScore = extensionScore + p_alpha.get(y)
 			ex = ex-1
 
-		if ex+1!=i-1:
-			for j in range(i-1-ex):
-				if ex+1+j in listHelix:
-					continue
-				else:
-					listHelix.append(ex+1+j)
+
 print(s)
 for i in range(len(s)):
 	if i in listHelix:
@@ -67,56 +59,45 @@ for i in range(len(s)):
 	else:
 		print(" ", end = "")
 
-
-#identifying beta sheet
+#identifying alpha helix
 for i in range(len(s)-4):
 	window = s[i:i+5]
-	score = 0
+	counter = 0
 	for x in window:
-		score = score + sheet.get(x)
-	if score>3:
+		if p_beta.get(x)>1:
+			counter = counter+1
+	if counter>=3:
 		for j in range(5):
-			if i+j in listHelix:
-				continue
-			else:
+			if (not(i+j in listSheet)):
 				listSheet.append(i+j)
-		extensionScore = 100000000
+		extensionScore = 1000000
 		ex = i+5
-
-		while extensionScore>=4:
-			if ex+4>=len(s):
+		while extensionScore>4:
+			if ex<len(s):
+				extensionWindow = s[ex-3:ex+1]
+				extensionScore = 0
+				for y in extensionWindow:
+					extensionScore = extensionScore + p_beta.get(y)
+				if extensionScore>4:
+					if (not(ex in listSheet)):
+						listSheet.append(ex)
+			else:
 				break
-			extensionWindow = s[ex:ex+4]
-			extensionScore = 0
-			for y in extensionWindow:
-				extensionScore = extensionScore + p_beta.get(y)
 			ex = ex+1
-
-		if ex-1!=i+5:
-			for j in range(ex-i-5):
-				if i+5+j in listSheet:
-					continue
-				else:
-					listSheet.append(i+5+j)
-
-		extensionScore = 100000000
+		extensionScore = 10000000
 		ex = i-1
-
-		while extensionScore>=4:
-			if ex-4<=0:
+		while extensionScore>4:
+			if ex>=0:
+				extensionWindow = s[ex:ex+4]
+				extensionScore = 0
+				for y in extensionWindow:
+					extensionScore = extensionScore +p_beta.get(y)
+				if extensionScore>4:
+					if (not(ex in listSheet)):
+						listSheet.append(ex)
+			else:
 				break
-			extensionWindow = s[ex-3:ex+1]
-			extensionScore = 0
-			for y in extensionWindow:
-				extensionScore = extensionScore + p_beta.get(y)
 			ex = ex-1
-
-		if ex+1!=i-1:
-			for j in range(i-1-ex):
-				if ex+1+j in listHelix:
-					continue
-				else:
-					listHelix.append(ex+1+j)
 
 print()
 print(s)
@@ -125,5 +106,6 @@ for i in range(len(s)):
 		print("S", end = "")
 	else:
 		print(" ", end = "")
+
 
 		
