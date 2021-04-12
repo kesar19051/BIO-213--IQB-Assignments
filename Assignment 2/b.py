@@ -59,7 +59,7 @@ for i in range(len(s)):
 	else:
 		print(" ", end = "")
 
-#identifying alpha helix
+#identifying beta strand
 for i in range(len(s)-4):
 	window = s[i:i+5]
 	counter = 0
@@ -72,7 +72,7 @@ for i in range(len(s)-4):
 				listSheet.append(i+j)
 		extensionScore = 1000000
 		ex = i+5
-		while extensionScore>4:
+		while extensionScore>=4:
 			if ex<len(s):
 				extensionWindow = s[ex-3:ex+1]
 				extensionScore = 0
