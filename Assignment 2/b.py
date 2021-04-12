@@ -1,7 +1,7 @@
 s = "SGFRKMAFPSGKVEGCMVQVTCGTTTLNGLWLDDTVYCPRHVICTAEDMLNPNYEDLLIRKSNHSFLVQAGNVQLRVIGHSMQNCLLRLKVDTSNPKTPKYKFVRIQPGQTFSVLACYNGSPSGVYQCAMRPNHTIKGSFLNGSCGSVGF"
 
 #values of different residues
-
+print()
 p_alpha = {'A': 1.45, 'R': 0.79, 'N': 0.73, 'D': 0.98, 'C': 0.77, 'E': 1.53, 'Q': 1.17, 'G': 0.53, 'H': 1.24, 'I': 1.00, 'L': 1.34, 'K': 1.07, 'M': 1.20, 'F': 1.12, 'P': 0.59, 'S': 0.79, 'T': 0.82, 'W': 1.14, 'Y': 0.61, 'V': 1.14}
 p_beta = {'A': 0.97, 'R': 0.90, 'N': 0.65, 'D': 0.80, 'C': 1.30, 'E': 0.26, 'Q': 1.23, 'G': 0.81, 'H': 0.71, 'I': 1.60, 'L': 1.22, 'K': 0.74, 'M': 1.67, 'F': 1.28, 'P': 0.62, 'S': 0.72, 'T': 1.20, 'W': 1.19, 'Y': 1.29, 'V': 1.65}
 
@@ -122,7 +122,10 @@ for i in range(len(s)):
 	else:
 		answer[i] = 'T'
 
-for i in range(len(region)):
+print()
+i = 0
+
+while i <len(region):
 	index = i
 	commence = region[i]
 	i = i+1
@@ -134,21 +137,24 @@ for i in range(len(region)):
 			break
 		else:
 			i = i+1
-	interval = s[index:i]
+	interval = s[region[index]:region[i-1]+1]
 	alpha = 0
 	beta = 0
+	answer[131] = 'S'
 	for x in interval:
 		alpha = alpha + p_alpha.get(x)
 		beta = beta + p_beta.get(x)
-	if alpha>beta:
+	if alpha>=beta:
 		for j in range(i-index):
-			answer[index+j] = 'H'
+			answer[region[index]+j] = 'H'
 	else:
 		for j in range(i-index):
-			answer[index+j] = 'S'
-print()
+			answer[region[index]+j] = 'S'
+
+
 print(s)
-for y in answer:
-	print(y, end = "")
+for x in answer:
+	print(x, end = "")
+print()
 
 
