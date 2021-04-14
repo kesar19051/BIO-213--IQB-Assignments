@@ -52,7 +52,7 @@ for i in range(len(s)-5):
 				break
 			ex = ex-1
 
-
+print("Residues identified as helix: ")
 print(s)
 for i in range(len(s)):
 	if i in listHelix:
@@ -101,6 +101,8 @@ for i in range(len(s)-4):
 			ex = ex-1
 
 print()
+print()
+print("Residues identified as strand: ")
 print(s)
 for i in range(len(s)):
 	if i in listSheet:
@@ -154,10 +156,26 @@ while i <len(region):
 		for j in range(i-index):
 			answer[region[index]+j] = 'S'
 
-
+print("Final result: ")
 print(s)
 for x in answer:
 	print(x, end = "")
 print()
-
-
+print()
+"""
+#for identifying the regions of difference
+print("The region of difference is denoted by '-': ")
+s1 = "THHHHHHHHHHHSSSSSSSSSSSSSSHHHHHHHHHSSSSHHHHHHHHHHHHTTHHHHHHHHHHSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSTTTTHSSSSSSSSSSSSSSSSSSSSSTTSSSSSSSSSSTTTHHHHHHTTTTTTTTT"
+s2 = "TTTT     HHHHHH EEEEEETTEEEEEEEETTEEEEEGGGG  HHHHH   HHHHHHH  GGG EEEETTEEE EEEEEEETTEEEEEE   TTTT        TTTEEEEEEEEETTEEEEEEEEEETTTT B    TTTTTTTEE "
+print(s1)
+print(s2)
+print()
+for i in range(len(s1)):
+	if s1[i:i+1]==s2[i:i+1]:
+		print(s1[i: i+1], end = "")
+	elif s1[i:i+1]=="S" and s2[i: i+1]=="E":
+		print("S", end = "")
+	else:
+		print("-", end = "")
+print()
+"""
