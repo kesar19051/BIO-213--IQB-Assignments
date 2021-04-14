@@ -130,6 +130,7 @@ for i in range(len(s)):
 print()
 i = 0
 
+numInterval = 0
 while i <len(region):
 	index = i
 	commence = region[i]
@@ -138,14 +139,14 @@ while i <len(region):
 		break
 	while region[i]==commence+1:
 		commence = commence+1
-		if i+1>=len(region):
+		i = i+1
+		if i>=len(region):
 			break
-		else:
-			i = i+1
 	interval = s[region[index]:region[i-1]+1]
+	numInterval = numInterval+1
 	alpha = 0
 	beta = 0
-	answer[131] = 'S'
+	#answer[131] = 'S'
 	for x in interval:
 		alpha = alpha + p_alpha.get(x)
 		beta = beta + p_beta.get(x)
