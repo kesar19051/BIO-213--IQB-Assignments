@@ -8,6 +8,7 @@ p_beta = {'A': 0.97, 'R': 0.90, 'N': 0.65, 'D': 0.80, 'C': 1.30, 'E': 0.26, 'Q':
 helix = {'E': 1, 'A': 1, 'L': 1, 'H': 1, 'M': 1, 'Q': 1, 'W': 1, 'V': 1, 'F': 1, 'K': 0.5, 'I': 0.5, 'D': 0, 'T': 0, 'S': 0, 'R': 0, 'C': 0, 'N': -1, 'Y': -1, 'P': -1, 'G': -1}
 sheet = {'M': 1, 'V': 1, 'I': 1, 'C': 1, 'Y': 1, 'F': 1, 'Q': 1, 'L': 1, 'T': 1, 'W': 1, 'A': 0.5, 'R': 0, 'G': 0, 'D': 0, 'K': -1, 'S': -1, 'H': -1, 'N': -1,'P': -1, 'E': -1}
 
+#list to store the indices of the residues that identify as hexlix or sheet
 listHelix = []
 listSheet = []
 
@@ -109,6 +110,8 @@ for i in range(len(s)):
 
 print()
 
+#answer will contain the final answer
+#region contains the overlapping regions, the residues that are identified as both: alpha helix and beta strand
 region = []
 answer = ['o']*len(s)
 
