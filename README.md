@@ -61,6 +61,12 @@ EFDT stands for Extremely Fast Decision Tree. We used this algorithm and skmulti
 
 The performance as compared with the base model as shown in the output. The decision tree updates its knowledge as the new data comes in and the ROC curve has been plotted accordingly.
 
+# Learnings
+
+*   The assignment was highly challenging. However, it gave us the opportunity to explore multiple libraries like sklearn and skmultiflow.
+*   We also learnt about serialization through this assignment when we dumped the C1 model.
+*   It gave an insight to the iconsistencies a data may have and how we should handle them in order to reach to a correct result.
+
 # Sources Used
 
 https://machinelearningmastery.com/train-test-split-for-evaluating-machine-learning-algorithms/
