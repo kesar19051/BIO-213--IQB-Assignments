@@ -48,11 +48,11 @@ class_weight is used to provide a weight or bias for each output class. But what
 
 It tells the maximum of leaf nodes that we want to have in the tree. The accuracy is similar to the base model but there are variations in the recall and precision. Since recall has decreased and precision has increased, this implies that there is an increase in the number of false negatives in the model.
 
+The most increased accuracy as compared with the base model comes after varying 'class weight' so for B1 we will be working with the decision tree built in 7th point.
+
 # (C) Experiments
 
 # Q1. Data Augmentation
 EFDT stands for Extremely Fast Decision Tree. We used this algorithm and skmultiflow.trees.ExtremelyFastDecisionTreeClassifier class to build the decision tree. It keeps on taking in data from a data stream and then modifies the decision tree accordingly rather than building it from scratch.
 
 The performance as compared with the base model as shown in the output. The decision tree updates its knowledge as the new data comes in and the ROC curve has been plotted accordingly.
-
-
