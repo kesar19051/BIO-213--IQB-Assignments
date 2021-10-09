@@ -61,6 +61,8 @@ EFDT stands for Extremely Fast Decision Tree. We used this algorithm and skmulti
 
 The performance as compared with the base model as shown in the output. The decision tree updates its knowledge as the new data comes in and the ROC curve has been plotted accordingly.
 
+# Q2. 
+
 # Learnings
 
 *   The assignment was highly challenging. However, it gave us the opportunity to explore multiple libraries like sklearn and skmultiflow.
