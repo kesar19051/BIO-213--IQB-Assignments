@@ -1,3 +1,7 @@
+# Assumptions
+
+*   The data does not have any outliers.
+
 # Preprocessing and data splitting
 
 Preprocessing
