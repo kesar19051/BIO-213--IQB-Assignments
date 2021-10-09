@@ -50,4 +50,9 @@ It tells the maximum of leaf nodes that we want to have in the tree. The accurac
 
 # (C) Experiments
 
+# Q1. Data Augmentation
 EFDT stands for Extremely Fast Decision Tree. We used this algorithm and skmultiflow.trees.ExtremelyFastDecisionTreeClassifier class to build the decision tree. It keeps on taking in data from a data stream and then modifies the decision tree accordingly rather than building it from scratch.
+
+The performance as compared with the base model as shown in the output. The decision tree updates its knowledge as the new data comes in and the ROC curve has been plotted accordingly.
+
+
