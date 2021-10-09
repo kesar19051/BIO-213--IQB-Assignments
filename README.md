@@ -52,7 +52,7 @@ class_weight is used to provide a weight or bias for each output class. But what
 
 It tells the maximum of leaf nodes that we want to have in the tree. The accuracy is similar to the base model but there are variations in the recall and precision. Since recall has decreased and precision has increased, this implies that there is an increase in the number of false negatives in the model.
 
-The most increased accuracy as compared with the base model comes after varying 'class weight' so for B1 we will be working with the decision tree built in 7th point.
+The most increased accuracy as compared with the base model comes after varying 'class weight'. However, since we do not have to alter the class weight for any further question. We are going with the max_depth = 6 for the further question as this is the only hyperparameter apart from class weight giving greater accuracy than the base model.
 
 # (C) Experiments
 
